@@ -1,0 +1,16 @@
+date,campaign,source,spend_rub,clicks,leads,revenue_rub
+2026-09-21,Home_Search,yandex,12500,390,12,59700
+2026-09-21,Home_Retarget,yandex,5500,200,7,39800
+2026-09-21,Team_Search,yandex,8500,240,4,0
+2026-09-22,Home_Search,yandex,11500,350,11,39800
+2026-09-22,Home_Retarget,yandex,5200,180,6,19900
+2026-09-22,Team_Search,yandex,7800,215,3,0
+2026-09-23,Home_Search,yandex,13000,410,14,59700
+2026-09-23,Home_Retarget,yandex,4700,165,5,19900
+2026-09-23,Team_Search,yandex,9000,255,5,0
+2026-09-24,Home_Search,yandex,10500,325,10,39800
+2026-09-24,Home_Retarget,yandex,,145,4,19900
+2026-09-24,Team_Search,yandex,8200,230,4,0
+2026-09-25,Home_Search,yandex,11200,345,11,39800
+2026-09-25,Home_Retarget,yandex,4300,150,-1,0
+2026-09-25,Team_Search,yandex,7600,205,3,0

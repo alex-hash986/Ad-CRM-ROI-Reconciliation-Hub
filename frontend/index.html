@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1e40af">
+  <title>Ad &amp; CRM ROI Reconciliation Hub</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script async id="chart-library" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="container brand">
+      <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <div><strong>Ad &amp; CRM ROI Reconciliation Hub</strong>
+        <p>Сквозная сверка расходов, CRM-выручки и аудит качества данных</p>
+      </div>
+      <button class="button subtle" id="new-run" type="button">+ Новая сверка</button>
+    </div>
+  </header>
+  <main class="container">
+    <div id="notice" role="status" aria-live="polite" hidden></div>
+    <section class="toolbar" aria-label="Управление сверками">
+      <label>Активная сверка<select id="run-select" disabled><option>Загрузка…</option></select></label>
+      <div class="actions">
+        <a class="button" id="excel" aria-disabled="true">Скачать Excel (.xlsx)</a>
+        <a class="button" id="markdown" aria-disabled="true">Управленческий отчёт (.md)</a>
+        <button type="button" class="button quiet" id="reset">Сбросить демо</button>
+      </div>
+    </section>
+    <section id="overview" aria-labelledby="run-title">
+      <div class="overview-heading">
+        <div>
+          <h1 id="run-title">Загрузка сверок…</h1>
+          <p id="run-period" class="muted"></p>
+        </div>
+        <button type="button" class="button quiet" id="print" hidden>Печать / PDF</button>
+      </div>
+      <div id="kpis" class="kpis"></div>
+      <div id="utm" class="utm" hidden></div>
+    </section>
+    <nav class="tabs" role="tablist" aria-label="Рабочая область">
+      <button id="tab-audit" role="tab" aria-controls="audit" aria-selected="true" type="button">Аудит и визуализация</button>
+      <button id="tab-qa" role="tab" aria-controls="qa" aria-selected="false" tabindex="-1" type="button">Карантин данных</button>
+      <button id="tab-upload" role="tab" aria-controls="upload" aria-selected="false" tabindex="-1" type="button">Запустить новую сверку</button>
+      <button id="tab-history" role="tab" aria-controls="history" aria-selected="false" tabindex="-1" type="button">История запусков</button>
+    </nav>
+    <section id="audit" role="tabpanel" aria-labelledby="tab-audit">
+      <div id="analytics" hidden>
+        <div class="charts">
+          <article class="panel chart-card">
+            <h2>Расход и выручка</h2><p id="chart-period" class="muted caption"></p>
+            <div class="chart-area"><canvas id="spend-chart" role="img" aria-label="Расходы и выручка по кампаниям"></canvas></div>
+            <details class="chart-data"><summary>Данные графика</summary><div id="spend-data" class="table-wrap"></div></details>
+          </article>
+          <article class="panel chart-card">
+            <div class="panel-heading"><div><h2>Эффективность по каналам</h2><p class="muted caption">Показатели из сумм по источнику</p></div>
+              <select id="chart-mode" aria-label="Метрики эффективности"></select></div>
+            <div class="chart-area"><canvas id="efficiency-chart" role="img" aria-label="Эффективность рекламных каналов"></canvas></div>
+            <details class="chart-data"><summary>Данные графика</summary><div id="efficiency-data" class="table-wrap"></div></details>
+          </article>
+        </div>
+        <article class="panel">
+          <div class="panel-heading table-heading"><div><h2>Аудит кампаний</h2><p class="muted caption" id="table-count"></p></div>
+            <div class="filters">
+              <input type="search" id="search" aria-label="Поиск по кампаниям" placeholder="Поиск по кампании">
+              <select id="status-filter" aria-label="Статус аудита">
+                <option value="">Все статусы</option><option value="critical">Критические (слив)</option>
+                <option value="warning">Требуют внимания</option><option value="scale">Масштабирование</option>
+                <option value="normal">Норма</option>
+              </select>
+              <a class="button quiet" id="audit-csv">CSV</a>
+            </div>
+          </div>
+          <div id="campaigns" class="table-wrap"></div>
+        </article>
+      </div>
+      <p id="empty-audit" class="panel muted">Выберите сверку из истории или создайте новую.</p>
+    </section>
+    <section id="qa" role="tabpanel" aria-labelledby="tab-qa" hidden>
+      <article class="panel"><h2>Загруженные файлы</h2><div id="files" class="table-wrap"></div></article>
+      <article class="panel quarantine">
+        <div class="panel-heading table-heading"><h2>Карантин данных (Data QA)</h2>
+          <a class="button quiet" id="qa-csv" aria-disabled="true">Скачать quarantine.csv</a></div>
+        <div id="errors" class="table-wrap"></div>
+      </article>
+    </section>
+    <section id="upload" role="tabpanel" aria-labelledby="tab-upload" hidden>
+      <form class="panel form-panel" id="upload-form">
+        <h2>Запустить новую сверку</h2>
+        <fieldset><legend>Режим</legend>
+          <div class="mode-choices">
+            <label><input type="radio" name="mode" value="ad_crm_sync" checked> Реклама + CRM (Сквозной ROI)</label>
+            <label><input type="radio" name="mode" value="period_compare"> Сравнение периодов (Неделя / Месяц)</label>
+          </div>
+        </fieldset>
+        <label>Название сверки<input name="name" maxlength="200" placeholder="Например, Директ + amoCRM за октябрь"></label>
+        <fieldset><legend>Целевые пороги аудита</legend>
+          <div class="thresholds">
+            <label>Целевой ROAS<input name="target_roas" type="number" step="any" min="0" value="3" required></label>
+            <label>Макс. CPL, ₽<input name="max_cpl" type="number" step="any" min="0" value="1500" required></label>
+            <label>Целевой ДРР, %<input name="target_drr" type="number" step="any" min="0" value="35" required></label>
+          </div>
+        </fieldset>
+        <fieldset><legend>CSV-файлы</legend><div id="dropzones" class="dropzones"></div></fieldset>
+        <p class="muted caption">До 10 МиБ на файл. Дата в формате ГГГГ-ММ-ДД. Поддерживаются UTF-8 и Windows-1251.</p>
+        <div id="form-error" role="alert" hidden></div>
+        <button type="submit" class="button primary" id="submit-run">Запустить сверку</button>
+      </form>
+    </section>
+    <section id="history" role="tabpanel" aria-labelledby="tab-history" hidden>
+      <article class="panel"><h2>История запусков</h2><div id="run-history" class="table-wrap"></div></article>
+    </section>
+  </main>
+  <footer class="container footer">Ad &amp; CRM ROI Reconciliation Hub</footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+date,deal_id,utm_campaign,utm_source,status,revenue_rub,cost_rub,gross_margin_rub
+2026-10-10,D-1, PARTNER_WEBINAR ,REFERRAL,won,75000,,60000
+2026-10-11,D-2,services_search,yandex,in_progress,0,0,
+2026-10-12,D-3, SAAS_RETARGET ,VK,in_progress,0,,0
+2026-10-13,D-4,services_feed,vk,lost,0,0,
+2026-10-14,D-5, SAAS_TRIAL ,YANDEX,won,34000,,13600
+2026-10-15,D-6,saas_search,yandex,in_progress,0,0,
+2026-10-10,D-7, SERVICES_SEARCH ,YANDEX,lost,0,,0
+2026-10-11,D-8,saas_retarget,vk,won,29000,11600,
+2026-10-12,D-9, SERVICES_FEED ,VK,won,18500,,9250
+2026-10-13,D-10,partner_webinar,referral,lost,0,0,
+2026-10-14,D-11, SAAS_SEARCH ,YANDEX,in_progress,0,,0
+2026-10-15,D-12,services_search,yandex,in_progress,0,0,
+2026-10-10,D-13, SAAS_RETARGET ,VK,won,29000,,17400
+2026-10-11,D-14,services_feed,vk,in_progress,0,0,
+2026-10-12,D-15, SAAS_TRIAL ,YANDEX,won,34000,,13600
+2026-10-13,D-16,saas_search,yandex,lost,0,0,
+2026-10-14,D-17, SERVICES_SEARCH ,YANDEX,won,56000,,39200
+2026-10-15,D-18,saas_retarget,vk,in_progress,0,0,
+2026-10-10,D-19, PARTNER_WEBINAR ,REFERRAL,lost,0,,0
+2026-10-11,D-20,saas_trial,yandex,in_progress,0,0,
+2026-10-12,D-21, SAAS_SEARCH ,YANDEX,won,75000,,60000
+2026-10-13,D-22,services_search,yandex,won,56000,16800,
+2026-10-14,D-23, SAAS_RETARGET ,VK,in_progress,0,,0
+2026-10-15,D-24,services_feed,vk,in_progress,0,0,
+2026-10-10,D-25, SAAS_TRIAL ,YANDEX,won,34000,,13600
+2026-10-11,D-26,saas_search,yandex,in_progress,0,0,
+2026-10-12,D-27, SERVICES_SEARCH ,YANDEX,in_progress,0,,0
+2026-10-13,D-28,partner_webinar,referral,lost,0,0,
+2026-10-14,D-29, SERVICES_FEED ,VK,won,18500,,9250
+2026-10-15,D-30,saas_trial,yandex,in_progress,0,0,
+2026-10-10,D-31, SAAS_SEARCH ,YANDEX,lost,0,,0
+2026-10-11,D-32,services_search,yandex,in_progress,0,0,
+2026-10-12,D-33, SAAS_RETARGET ,VK,won,29000,,17400
+2026-10-13,D-34,services_feed,vk,lost,0,0,
+2026-10-14,D-35, SAAS_TRIAL ,YANDEX,in_progress,0,,0
+2026-10-15,D-36,saas_search,yandex,won,75000,15000,
+2026-10-10,D-37, PARTNER_WEBINAR ,REFERRAL,won,56000,,39200
+2026-10-11,D-38,saas_retarget,vk,in_progress,0,0,
+2026-10-12,D-39, SERVICES_FEED ,VK,in_progress,0,,0
+2026-10-13,D-40,saas_trial,yandex,lost,0,0,
+2026-10-14,D-41, SAAS_SEARCH ,YANDEX,won,75000,,60000
+2026-10-15,D-42,services_search,yandex,in_progress,0,0,
+2026-10-10,D-43, SAAS_RETARGET ,VK,won,29000,,17400
+2026-10-11,D-44,services_feed,vk,in_progress,0,0,
+2026-10-12,D-45, SAAS_TRIAL ,YANDEX,won,34000,,13600
+2026-10-15,D-46,saas_search,,paid,ошибка,0,
+2026-10-15,D-1,partner_webinar,referral,lost,0,0,

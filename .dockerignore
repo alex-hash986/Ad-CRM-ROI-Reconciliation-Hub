@@ -1,0 +1,11 @@
+**
+!app/
+!app/**
+!frontend/
+!frontend/**
+!sample_data/
+!sample_data/**
+!requirements.txt
+!Dockerfile
+**/__pycache__/
+**/*.py[cod]
